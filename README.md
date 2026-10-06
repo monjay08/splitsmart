@@ -1,49 +1,45 @@
 # SplitSmart Expense Analyzer
 
-Upload a messy expense CSV, clean it, and see who owes whom.
+A small app that reads a messy expense CSV, cleans it, and shows who owes whom.
 
-- **Live frontend:** `<add Netlify/Vercel link>`
-- **Live backend:** `<add Vercel link>`  (health check: `GET /`)
+**Live links** (I will fill these after deploying)
+- Frontend: add link here
+- Backend: add link here
 
-## Stack
-Django + Django REST Framework + pandas (backend), React + Vite + Tailwind (frontend).
+## Tech
+Django, Django REST Framework, pandas, React, Tailwind
 
-## Run locally
+## Run it locally
 
-Backend:
-```bash
+Backend
+```
 cd backend
-python -m venv .venv && source .venv/bin/activate
+python -m venv .venv
+.venv\Scripts\activate
 pip install -r requirements.txt
-python manage.py runserver        # http://127.0.0.1:8000
-python manage.py test             # run the tests
+python manage.py test
+python manage.py runserver
 ```
 
-Frontend:
-```bash
+Frontend (in a second terminal)
+```
 cd frontend
-cp .env.example .env              # VITE_API_URL points to the backend
+copy .env.example .env
 npm install
 npm run dev
 ```
-Upload `backend/sample.csv` to try it.
+Then open http://localhost:5173 and upload `backend/sample.csv`.
 
 ## API
-`POST /api/analyze/` with multipart field `file` returns `summary`, `bad_rows`, `balances`, `settlements`, `monthly_totals`.
-All money in the response is in **paise** (integers). Wrong or missing files return `400 {"error": "..."}`.
+`POST /api/analyze/` takes a CSV in the form field `file` and returns bad rows, balances, settlements and monthly totals. Money is in paise. A wrong or missing file gives a 400 error with a message.
 
 ## How it works
-- `analyzer/services.py` holds all logic (parsing, cleaning, splitting, balances, settlement). `views.py` only handles the upload.
-- Money is stored as integer paise, so there are no floating point errors. When a split does not divide evenly, the extra paisa goes to the person who lost the most in rounding (ties: alphabetical).
-- Settlement: the person who owes the most pays the person owed the most, repeated until everyone is at 0.
-- Rules implemented: name normalization, 3 date formats, symbol/comma stripping, USD x 83, blank currency = INR, blank category = Uncategorized, duplicate `expense_id` (later row wins), same person twice in a row is bad, exact/percent sums checked, negative amount = refund.
-- Bad row numbers match the CSV file (header is row 1).
+- All logic is in `backend/analyzer/services.py`. The view only takes the upload and calls it.
+- Money is kept in paise (whole numbers) so there are no decimal errors.
+- If a split leaves an extra paisa, it goes to the person who lost the most in rounding. If tied, alphabetical order.
+- To settle up, the person who owes the most pays the person who is owed the most, repeated until everyone is at 0.
+- Bad rows show their CSV row number and a reason.
 
-## Deploy
-- Backend: Vercel, Root Directory = `backend`. Set `SECRET_KEY` env var.
-- Frontend: Netlify or Vercel, Root Directory = `frontend`, env `VITE_API_URL` = backend URL.
-
-## Not finished / known limits
-- The person filter applies to balances, settlements and bad rows. Monthly totals are for everyone.
-- Only INR and USD are supported; any other currency is a bad row by design.
-- CORS is open to all origins (fine for this stateless demo).
+## What I did not finish
+- The person filter works on balances, settlements and bad rows, but not on monthly totals.
+- Only INR and USD are supported. Any other currency is marked as a bad row.
