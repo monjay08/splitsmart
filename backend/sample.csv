@@ -1,0 +1,17 @@
+expense_id,date,description,category,paid_by,amount,currency,split_type,participants,split_values
+E001,2026-01-05,Hotel booking,Travel,Aman,"₹ 12,000",INR,equal,Aman;Bhavna;Chirag;Divya,
+E002,06/01/2026,Dinner,Food,bhavna ,1000,INR,equal,Aman;Bhavna;Chirag,
+E003,07 Jan 2026,Cab,Travel,Chirag,$30,USD,percent,Aman;Chirag;Divya,50;25;25
+E004,2026-01-08,Groceries,Food,Divya,"6,500",INR,exact,Bhavna;Divya,4000;2500
+E005,2026-01-09,Movie,Fun,Aman,900,,equal,Bhavna;Chirag;Divya ,
+E006,2026-01-10,Snacks,,Chirag,abc,INR,equal,Aman;Chirag,
+E007,2026-01-11,Museum,Fun,Bhavna,1200,INR,percent,Aman;Bhavna,60;30
+E008,2026-01-12,Fuel,Travel,Aman,1500,INR,exact,Aman;Chirag,1000;400
+E002,06/01/2026,Dinner (corrected),Food,Bhavna,1200,INR,equal,Aman;Bhavna;Chirag,
+E009,2026-02-01,Hotel refund,Travel,Aman,-2000,INR,equal,Aman;Bhavna;Chirag,
+E010,31/02/2026,Lunch,Food,Divya,600,INR,equal,Aman;Divya,
+E011,2026-02-03,Concert,Fun,Divya,100,EUR,equal,Divya;Aman,
+E012,2026-02-05,Taxi,Travel,chirag,"4,000.01",INR,percent,Aman;Bhavna;Divya,33.33;33.33;33.34
+E013,2026-02-06,Tea,,Aman,10,INR,equal,Bhavna;Chirag;Divya,
+E014,2026-02-07,Gift,Fun,Bhavna,450,INR,equal,Aman;Aman;Chirag,
+E015,2026-02-08,Parking,Travel,Aman,0,INR,equal,Aman;Bhavna,
