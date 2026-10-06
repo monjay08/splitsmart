@@ -3,8 +3,8 @@
 A small app that reads a messy expense CSV, cleans it, and shows who owes whom.
 
 **Live links** (I will fill these after deploying)
-- Frontend: add link here
-- Backend: add link here
+- Frontend: https://splitsmart-orcin.vercel.app
+- Backend: https://splitsmart-backend.vercel.app
 
 ## Tech
 Django, Django REST Framework, pandas, React, Tailwind
