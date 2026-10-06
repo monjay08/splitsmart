@@ -1,7 +1,4 @@
-"""Business logic for SplitSmart. No Django imports here, so it is easy to test.
 
-All money is handled in paise (integers) to avoid floating point errors.
-"""
 import io
 import re
 from collections import defaultdict
@@ -22,11 +19,11 @@ SPLIT_TYPES = ("equal", "exact", "percent")
 
 
 class CSVError(ValueError):
-    """The whole file is unusable (not a CSV, missing columns, empty)."""
+   
 
 
 class RowError(ValueError):
-    """One row is bad; the message is shown to the user as the reason."""
+    
 
 
 # ---------- small parsers ----------
